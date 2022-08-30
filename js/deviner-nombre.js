@@ -1,6 +1,6 @@
 /**
  * Jeu du nombre mystère
- * @author  Steve Fallet
+ * @author  Maximilien Moritz
  * @version 0.1
  * @since   2018-09-09 (date de création)
  */
@@ -20,32 +20,22 @@
     }
 
     let nbEssais = 0;
-    let test = false;
     let nbMystere = tireNombre(1, 100);
+    let reponse;
 
     //Tant que l'utilisateur n'a pas trouvé le nombre (test est faux)
     //Répète la saisie
-    while (!test) {
-
-        //Génère un nombre aléatoire compris entre 1 et 100
-        let reponse = Number(prompt("Entrez un nombre entre 1 et 100"));
-
-        //Incrémente le nombre d'essais
+    do {
+        reponse = Number(prompt("Entrez un nombre entre 1 et 100"));
         nbEssais++;
 
-        //Si l'utilisateur trouve le nombre
-        //Affiche une confirmation et le nombre d'essais
-        if (reponse === nbMystere) {
-            alert(`Vous avez trouvé après ${nbEssais} essais`);
-            test = true;
-
-            //Si le nombre est plus grand / petit
-            //Affiche un message en accordance
-        } else if (reponse < nbMystere) {
+       if (reponse < nbMystere) {
             alert("C'est plus grand");
-        } else {
+        } else if (reponse > nbMystere){
             alert("C'est plus petit");
         }
-    }
+    } while(reponse !== nbMystere);
+
+    alert(`Vous avez trouvé après ${nbEssais} essais`);
 
 }()); // main IIFE
